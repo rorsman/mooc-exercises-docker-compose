@@ -1,0 +1,14 @@
+FROM golang:1.26
+
+WORKDIR /backend
+
+COPY backend .
+
+RUN go build
+RUN go test ./...
+
+EXPOSE 8080
+
+ENV REQUEST_ORIGIN=http://localhost:5001
+
+CMD ["./server"]

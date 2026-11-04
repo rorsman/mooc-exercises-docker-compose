@@ -1,0 +1,9 @@
+services:
+  backend:
+    image: alror/mooc-backend
+    ports:
+      - 8080:8080
+  fronend:
+    image: alror/mooc-frontend
+    ports:
+      - 5001:5001
