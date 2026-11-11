@@ -1,12 +1,25 @@
 services:
   redis:
     image: redis
+  postgres:
+    image: postgres:18
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
   backend:
     image: alror/mooc-backend
     ports:
       - 8080:8080
     environment:
       - REDIS_HOST=redis
+      - REQUEST_ORIGIN=http://localhost:5001
+      - POSTGRES_HOST=postgres
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_DATABASE
+    depends_on:
+      - redis
+      - postgres
+  
   fronend:
     image: alror/mooc-frontend
     ports:
