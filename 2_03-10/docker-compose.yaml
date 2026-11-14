@@ -19,7 +19,17 @@ services:
     depends_on:
       - redis
       - postgres
-  fronend:
+  frontend:
     image: alror/mooc-frontend
     ports:
       - 5001:5001
+  nginx:
+    image: nginx
+    ports:
+      - 8000:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - frontend
+      - backend
+ 
